@@ -19,9 +19,9 @@ public class IfQuiz03 {
 		int b = sc.nextInt();
 		int c = sc.nextInt();
 		
-		int max = 0;
-		int mid = 0;
-		int min = 0;
+		int max;
+		int mid;
+		int min;
 		
 		if (a > b) {
 			if (a > c) {
