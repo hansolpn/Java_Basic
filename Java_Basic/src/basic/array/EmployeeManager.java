@@ -30,13 +30,17 @@ public class EmployeeManager {
 
 			System.out.print("> ");
 			int menu = sc.nextInt();
-
+			
 			int i = 0;
 			switch (menu) {
 			case 1:
 				//사원 정보 4가지를 입력받아 각 배열에 저장하는 코드를 작성.
 				//사번은 중복되면 안됩니다.
 				//(무한루프를 구현해서 사번 중복이 발생하면 다시 입력받기.)
+				if (count >= 100) {
+					System.out.println("추가할 수 있는 최대 한도에 도달했어요!");
+					continue outer;
+				}
 				String userNum;
 				while (true) {
 					System.out.println("사원 번호를 입력해 주세요");
@@ -136,7 +140,7 @@ public class EmployeeManager {
 				else {
 					System.out.println("조회하신 사원의 정보가 없습니다.");
 				}
-
+				
 				System.out.println("계속하시려면 엔터를 입력하세요.");
 				sc.nextLine();
 				sc.nextLine();
@@ -165,7 +169,7 @@ public class EmployeeManager {
 					System.out.println("[1. 나이변경 | 2. 부서변경 | 3.취소]");
 					System.out.print("> ");
 					int subnum = sc.nextInt();
-
+					
 					switch (subnum) {
 					case 1:
 						System.out.println("나이를 입력해주세요");
@@ -186,7 +190,7 @@ public class EmployeeManager {
 						sc.nextLine();
 						continue outer;
 					}
-
+					
 					System.out.println("--- 수정된 사원 정보 ---");
 					System.out.println("사번: " + userNums[i]);
 					System.out.println("이름: " + names[i]);
@@ -196,7 +200,7 @@ public class EmployeeManager {
 				else {
 					System.out.println("조회하신 사원의 정보가 없습니다.");
 				}
-
+				
 				System.out.println("계속하시려면 엔터를 입력하세요.");
 				sc.nextLine();
 				sc.nextLine();
@@ -231,16 +235,22 @@ public class EmployeeManager {
 					case "y":
 					case "Y":
 						//삭제할 인덱스 기준으로 뒤에 있는 값들을 앞으로 한칸씩 땡기기
-						for (int j = i; j < count; j++) {
+						for (int j = i; j < count - 1; j++) {
 							userNums[j] = userNums[j + 1];
 							names[j] = names[j + 1];
 							ages[j] = ages[j + 1];
 							departments[j] = departments[j + 1];
 						}
-
+						
+						// 맨 뒤의 정보 삭제
+						userNums[count] = null;
+						names[count] = null;
+						ages[count] = 0;
+						departments[count] = null;
+						
 						// 카운트 줄이기
 						count--;
-
+						
 						System.out.println("사원이 삭제되었습니다.");
 						System.out.println(count);
 						System.out.println(Arrays.toString(userNums));
@@ -252,11 +262,11 @@ public class EmployeeManager {
 				else {
 					System.out.println("조회하신 사원의 정보가 없습니다.");
 				}
-
+				
 				System.out.println("계속하시려면 엔터를 입력하세요.");
 				sc.nextLine();
 				sc.nextLine();
-
+				
 				break;
 			case 6:
 				System.out.println("프로그램을 종료합니다");
