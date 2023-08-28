@@ -80,7 +80,7 @@ public class RussianRoulette {
 			}
 
 			// 총알 넣을 위치 변경
-			if (bulletPoint == bullets.length) {
+			if (bulletPoint == bullets.length - 1) {
 				bulletPoint = 0;
 			}
 			else {
