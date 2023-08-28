@@ -29,7 +29,7 @@ public class EmployeeManager {
 
 			System.out.print("> ");
 			int menu = sc.nextInt();
-			
+
 			int i = 0;
 			switch (menu) {
 			case 1:
@@ -51,8 +51,7 @@ public class EmployeeManager {
 					userNum = sc.next();
 
 					boolean flag = false;
-					i = 0;
-					for (/*i=0*/; i < count; i++) {
+					for (i = 0; i < count; i++) {
 						if (userNums[i] == null) {
 							break;
 						}
@@ -123,8 +122,7 @@ public class EmployeeManager {
 				System.out.print("> ");
 				userNum = sc.next();
 
-				i = 0;
-				for (/*i=0*/; i < count; i++) {
+				for (i = 0; i < count; i++) {
 					if (userNums[i] == null) {
 						break;
 					}
@@ -133,7 +131,7 @@ public class EmployeeManager {
 					}
 				}
 
-				if (i != count) {
+				if (i < count) {
 					System.out.println("--- 입력한 사원 번호의 사원 정보 ---");
 					System.out.println("사번: " + userNums[i]);
 					System.out.println("이름: " + names[i]);
@@ -157,8 +155,7 @@ public class EmployeeManager {
 				System.out.print("> ");
 				userNum = sc.next();
 
-				i = 0;
-				for (/*i=0*/; i < count; i++) {
+				for (i = 0; i < count; i++) {
 					if (userNums[i] == null) {
 						break;
 					}
@@ -167,7 +164,8 @@ public class EmployeeManager {
 					}
 				}
 
-				if (i != count) {
+				if (i < count) {
+					System.out.println("수정할 사원의 이름 : " + names[i]);
 					System.out.println("해당되는 메뉴의 번호를 입력해 주세요");
 					System.out.println("[1. 나이변경 | 2. 부서변경 | 3.취소]");
 					System.out.print("> ");
@@ -177,16 +175,15 @@ public class EmployeeManager {
 					case 1:
 						System.out.println("나이를 입력해주세요");
 						System.out.print("> ");
-						int age = sc.nextInt();
-						ages[i] = age;
+						ages[i] = sc.nextInt();
 						break;
 					case 2:
 						System.out.println("부서명를 입력해주세요");
 						System.out.print("> ");
-						String department = sc.next();
-						departments[i] = department;
+						departments[i] = sc.next();
 						break;
 					case 3:
+					default:
 						System.out.println("사원 수정을 취소합니다.");
 						System.out.print("계속하시려면 엔터를 입력하세요.");
 						sc.nextLine();
@@ -219,8 +216,7 @@ public class EmployeeManager {
 				System.out.print("> ");
 				userNum = sc.next();
 
-				i = 0;
-				for (/*i=0*/; i < count; i++) {
+				for (i = 0; i < count; i++) {
 					if (userNums[i] == null) {
 						break;
 					}
@@ -229,7 +225,7 @@ public class EmployeeManager {
 					}
 				}
 
-				if (i != count) {
+				if (i < count) {
 					System.out.printf("사번: %s, 사원 이름: %s\n", userNums[i], names[i]);
 					System.out.println("정말 삭제하시겠습니까? [Y/N]");
 					System.out.print("> ");
