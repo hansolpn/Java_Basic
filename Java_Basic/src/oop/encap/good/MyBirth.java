@@ -81,7 +81,11 @@ public class MyBirth {
 	}
 
 	public void setDay(int day) {
-		if (day < 1 || day > 31) {
+		if (month == 0) {
+			System.out.println("일자를 입력하기 위해서는 월 입력이 선행되어야 합니다.");
+			return;
+		}
+		if (!isValidateMonth(day) || day < 1 || day > 31 ) {
 			System.out.println("잘못된 일 입력입니다.");
 		}
 		else {
@@ -93,7 +97,7 @@ public class MyBirth {
 	public void birthInfo() {
 		// year, month, day 셋 중 단 하나라도 제대로 값이 셋팅되지 않았다면
 		// 출력을 해주지 않겠다.
-		if (year != 0 && month != 0 && day != 0 && isValidateMonth()) {
+		if (year != 0 && month != 0 && day != 0 ) {
 			System.out.printf("내 생일은 %d년 %d월 %d일 입니다.\n"
 					, year, month, day);
 		}
@@ -102,7 +106,7 @@ public class MyBirth {
 		}
 	}
 	
-	private boolean isValidateMonth() {
+	private boolean isValidateMonth(int day) {
 		// 각 월에 적합한 일자가 셋팅이 되어 있는지를 판별하는 메서드
 		switch (month) {
         case 1: case 3: case 5: case 7:
