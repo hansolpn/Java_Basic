@@ -4,14 +4,14 @@ public class Circle extends Shape {
 
 	private int r;
 
-	public Circle(int r) {
-		super("원");
+	public Circle(String name, int r) {
+		super(name);
 		this.r = r;
 	}
 
 	@Override
 	public double getArea() {
-		return 2 * Math.PI * r;
+		return r * r * Math.PI;
 	}
 
 }

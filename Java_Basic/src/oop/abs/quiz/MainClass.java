@@ -17,14 +17,12 @@ package oop.abs.quiz;
 public class MainClass {
 
 	public static void main(String[] args) {
-		Rect rect = new Rect("정사각형", 5, 5);
-		Circle circle = new Circle(4);
+		Shape rect = new Rect("길이가 5인 정사각형", 5, 5);
+		Shape circle = new Circle("반지름이 4인 원", 4);
 
-		rect.getName();
-		System.out.printf("의 넓이: %.1f\n", rect.getArea());
+		System.out.printf("%s의 넓이: %.1f\n", rect.getName(), rect.getArea());
 
-		circle.getName();
-		System.out.printf("의 넓이: %.1f\n", circle.getArea());
+		System.out.printf("%s의 넓이: %.1f\n", circle.getName(), circle.getArea());
 
 	}
 

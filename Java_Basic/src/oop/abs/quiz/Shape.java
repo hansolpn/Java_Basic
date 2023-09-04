@@ -20,7 +20,7 @@ public abstract class Shape {
 
 	public abstract double getArea();
 
-	public void getName() {
-		System.out.print(name);
+	public String getName() {
+		return name;
 	}
 }
