@@ -14,7 +14,7 @@ public class LottoSimulator {
 	static int prize3 = 0; //3등 당첨 횟수를 세 줄 변수
 	static int prize4 = 0; //4등 당첨 횟수를 세 줄 변수
 	static int prize5 = 0; //5등 당첨 횟수를 세 줄 변수
-	static int failCnt = 0; // 당첨 횟수를 세 줄 변수
+	static int failCnt = 0; // 미당첨 횟수를 세 줄 변수
 
 
 	public static Set<Integer> createLotto() {
@@ -102,7 +102,6 @@ public class LottoSimulator {
 			failCnt++;
 		}
 	}
-	//    
 
 	public static void main(String[] args) {
 
@@ -115,20 +114,22 @@ public class LottoSimulator {
 		System.out.println(wins);
 		System.out.println(bonus);
 
-		while(true) {
+		Set<Integer> mys = null;
+		while (prize1 < 1) {
 			/*
              - 1등이 당첨 될 때까지 반복문을 돌립니다.
              - 1등이 당첨 된다면, 1등이 되기까지 누적 당첨 횟수를 출력하고
               반복문을 종료합니다.
              - 로또를 구매하기 위한 금액도 출력하세요. (long)
 			 */
-			Set<Integer> mys = createLotto();
+			mys = createLotto();
 			checkLottoNumber(wins, mys, bonus);
-
-			if (prize1 > 0) {
-				break;
-			}
 		}
+		
+		System.out.println(mys);
+		System.out.println("-----");
+		System.out.println("축하합니다! 1등에 당첨되셨습니다!");
+		System.out.println("-----");
 
 		int total = prize1 + prize2 + prize3 + prize4 + prize5 + failCnt;
 		long totalPrice = (long)total * 1000L;
@@ -139,6 +140,7 @@ public class LottoSimulator {
 		System.out.println("3등 당첨 횟수: " + prize3);
 		System.out.println("4등 당첨 횟수: " + prize4);
 		System.out.println("5등 당첨 횟수: " + prize5);
+		System.out.println("누적 당첨 횟수: " + (total - failCnt));
 		System.out.println("꽝 횟수: " + failCnt);
 		System.out.println("총 구매 횟수: " + total);
 		System.out.println("구입한 가격: " + formatter.format(totalPrice) + "원");
