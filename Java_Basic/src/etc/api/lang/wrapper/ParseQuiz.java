@@ -32,7 +32,7 @@ public class ParseQuiz {
 			String pNum = sc.next();
 			pNum = pNum.trim();
 
-			if (pNum.length() != 14 || !pNum.contains("-")) {
+			if (pNum.length() != 14 || pNum.indexOf("-") != 6) {
 				System.out.println("주민번호를 하이픈 포함해서 14자를 입력해주세요.");
 				System.out.println("다시 입력해주세요!");
 				System.out.print("> ");
@@ -41,12 +41,7 @@ public class ParseQuiz {
 
 			try {
 				String[] temp = pNum.split("-");
-				if (pNum.indexOf("-") != 6) {
-					System.out.println("하이픈 위치가 잘못되었습니다.");
-					System.out.println("다시 입력해주세요!");
-					System.out.print("> ");
-					continue;
-				}
+
 				if (temp.length != 2) {
 					System.out.println("하이픈이 너무 많습니다.");
 					System.out.println("다시 입력해주세요!");
@@ -67,7 +62,7 @@ public class ParseQuiz {
 				System.out.print("> ");
 				continue;
 			}
-			
+
 			if (sex < 1 || sex > 4) {
 				System.out.println("주민등록번호 뒷자리 첫번째 숫자가 1,2,3,4가 아닙니다.");
 				System.out.println("다시 입력해주세요!");
@@ -78,38 +73,32 @@ public class ParseQuiz {
 			//System.out.printf("%d, %d, %d, %d \n", year, month, day, sex);
 			break;
 		}
-		
+
 		System.out.println(makeMessage(year, month, day, sex));
-		
+
 		sc.close();
 
 	}
 
 	private static StringBuilder makeMessage(int year, int month, int day, int sex) {
 		StringBuilder msg = new StringBuilder();
-		
+
 		if (sex == 1 || sex == 2) {
 			year = 1900 + year;
 		}
 		else {
 			year = 2000 + year;
 		}
-		
-		msg.append(year);
-		msg.append("년 ");
-		
-		msg.append(month);
-		msg.append("월 ");
-		
-		msg.append(day);
-		msg.append("일 ");
-		
+
+		msg.append(year + "년 ");
+		msg.append(month + "월 ");
+		msg.append(day + "일 ");
+
 		LocalDate now = LocalDate.now();
 		int age = now.getYear() - year;
-		
-		msg.append(age);
-		msg.append("세 ");
-		
+
+		msg.append(age + "세 ");
+
 		switch (sex) {
 		case 1:
 		case 3:
