@@ -1,7 +1,9 @@
 package etc.api.io.buffered;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -34,12 +36,13 @@ public class BufferedQuiz {
 
 		FileWriter fw = null;
 		BufferedWriter bw = null;
+		String name = null;
 		Scanner sc = new Scanner(System.in);
 
 		try {
 			// 2.
 			System.out.print("파일명을 입력하세요: ");
-			String name = sc.next();
+			name = sc.next();
 			sc.nextLine();
 
 			fw = new FileWriter(String.format("%s/%s.txt", workSpace, name));
@@ -69,6 +72,30 @@ public class BufferedQuiz {
 			}
 		}
 		System.out.println("입력을 종료합니다.");
+
+		System.out.println("*** 출력 ***");
+
+		FileReader fr = null;
+		BufferedReader br = null;
+
+		try {
+			fr = new FileReader(String.format("%s/%s.txt", workSpace, name));
+			br = new BufferedReader(fr);
+
+			String out = null;
+			while ((out = br.readLine()) != null) {
+				System.out.println(out);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+				fr.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		sc.close();
 
